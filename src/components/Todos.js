@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addTodos } from "../redux/reducer";
 
-export default function Todos(props) {
+function Todos(props) {
   const [todo, setTodo] = useState("");
 
   const handleChange = (e) => {
@@ -16,7 +18,19 @@ export default function Todos(props) {
         value={todo}
       />
       <button className="add-btn">Add</button>
-      <br/>
+      <br />
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    todos: state,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (obj) => dispatch(addTodos(obj)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todos);
