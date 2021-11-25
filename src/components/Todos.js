@@ -46,12 +46,6 @@ function Todos(props) {
         Add
       </button>
       <br />
-      <ul>
-        {props.todos.length > 0 &&
-          props.todos.map((item) => {
-            return <li key={item.id}>{item.item}</li>;
-          })}
-      </ul>
     </div>
   );
 }
