@@ -1,0 +1,37 @@
+.addTodos {
+  display: flex;
+  input {
+    min-width: 15;
+    width: 40vw;
+    max-height: 2.5rem;
+    background-color: #e1ebfd;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+
+    &:focus {
+      outline: none;
+      border: 2px solid rgb(0, 89, 255);
+    }
+  }
+
+  .add-btn {
+    margin-left: 1rem;
+    background-color: #271c6c;
+    color: #e1ebfd;
+    border-radius: 50%;
+    border: 2px solid #e1ebfd;
+    font-size: 1.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    cursor: pointer;
+    box-shadow: 2px 4px 10px #271c6c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

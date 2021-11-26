@@ -7,6 +7,7 @@ import {
   updateTodos,
 } from "../redux/reducer";
 import TodoItem from "./TodoItem";
+import "./displayTodos.scss";
 
 const mapStateToProps = (state) => {
   return {
@@ -26,13 +27,22 @@ const mapDispatchToProps = (dispatch) => {
 const DisplayTodos = (props) => {
   const [sort, setSort] = useState("active");
   return (
-    <div className="displaytodos">
+    <div className="displayTodos">
       <div className="buttons">
-        <button onClick={() => setSort("active")}>Active</button>
+        <button onClick={() => setSort("active")} className="button active">
+          Active
+        </button>
 
-        <button onClick={() => setSort("completed")}>Completed</button>
+        <button
+          onClick={() => setSort("completed")}
+          className="button completed"
+        >
+          Completed
+        </button>
 
-        <button onClick={() => setSort("all")}>All</button>
+        <button onClick={() => setSort("all")} className="button all">
+          All
+        </button>
       </div>
 
       <ul>

@@ -1,0 +1,72 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(184, 184, 184);
+  background: radial-gradient(
+    circle,
+    hsla(237, 34%, 78%, 0.9) 0%,
+    hsla(219, 88%, 94%, 0) 100%
+  );
+  margin: 0 1rem 1rem 0;
+  height: 8rem;
+  width: 18rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+
+  textarea {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #e1ebfd;
+    color: #241c6c;
+    height: 70%;
+
+    // &:disabled {
+    //   background-color:transparent;
+    // }
+  }
+
+  .buttons {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    .icon {
+      border-radius: 20%;
+      border: none;
+      margin: 0 0.6rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #241c6c;
+      background-color: transparent;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:not(:last-child) {
+        margin-left: 0;
+      }
+    }
+
+    .edit {
+    }
+
+    .completed {
+    }
+
+    .remove {
+    }
+  }
+
+  .completed {
+    position: absolute;
+    right: 1.2rem;
+    top: 1.2rem;
+    background-color: lightblue;
+    border: 2px solid #272727;
+    font-size: 0.8rem;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+  }
+}
