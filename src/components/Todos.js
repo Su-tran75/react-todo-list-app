@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 import { addTodos } from "../redux/reducer";
 import "./todos.scss";
 import { GoPlus } from "react-icons/go";
+import { motion } from "framer-motion";
 
 const mapStateToProps = (state) => {
   return {
@@ -16,8 +17,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 function Todos(props) {
-  console.log("Todos -> props", props);
   const [todo, setTodo] = useState("");
+  const addTaskInput = useRef(null);
+  console.log("Todos -> addTaskInput", addTaskInput);
 
   const add = () => {
     if (todo === "") {
@@ -29,6 +31,7 @@ function Todos(props) {
         completed: false,
       });
       setTodo("");
+      addTaskInput.current.focus();
     }
   };
 
@@ -43,10 +46,16 @@ function Todos(props) {
         className="todoInput"
         onChange={handleChange}
         value={todo}
+        ref={addTaskInput}
       />
-      <button className="add-btn" onClick={add}>
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="add-btn"
+        onClick={add}
+      >
         <GoPlus />
-      </button>
+      </motion.button>
       <br />
     </div>
   );

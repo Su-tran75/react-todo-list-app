@@ -8,6 +8,7 @@ import {
 } from "../redux/reducer";
 import TodoItem from "./TodoItem";
 import "./displayTodos.scss";
+import { motion, AnimatePresence } from "framer-motion";
 
 const mapStateToProps = (state) => {
   return {
@@ -29,27 +30,71 @@ const DisplayTodos = (props) => {
   return (
     <div className="displayTodos">
       <div className="buttons">
-        <button onClick={() => setSort("active")} className="button active">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setSort("active")}
+          className="button active"
+        >
           Active
-        </button>
+        </motion.button>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           onClick={() => setSort("completed")}
           className="button completed"
         >
           Completed
-        </button>
+        </motion.button>
 
-        <button onClick={() => setSort("all")} className="button all">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setSort("all")}
+          className="button all"
+        >
           All
-        </button>
+        </motion.button>
       </div>
 
       <ul>
-        {props.todos.length > 0 && sort === "active"
-          ? props.todos.map((item) => {
-              return (
-                item.completed === false && (
+        <AnimatePresence>
+          {props.todos.length > 0 && sort === "active"
+            ? props.todos.map((item) => {
+                return (
+                  item.completed === false && (
+                    <TodoItem
+                      key={item.id}
+                      item={item}
+                      removeTodo={props.removeTodo}
+                      updateTodo={props.updateTodo}
+                      completeTodo={props.completeTodo}
+                    />
+                  )
+                );
+              })
+            : null}
+          {/* for completed items */}
+          {props.todos.length > 0 && sort === "completed"
+            ? props.todos.map((item) => {
+                return (
+                  item.completed === true && (
+                    <TodoItem
+                      key={item.id}
+                      item={item}
+                      removeTodo={props.removeTodo}
+                      updateTodo={props.updateTodo}
+                      completeTodo={props.completeTodo}
+                    />
+                  )
+                );
+              })
+            : null}
+          {/* for all items */}
+          {props.todos.length > 0 && sort === "all"
+            ? props.todos.map((item) => {
+                return (
                   <TodoItem
                     key={item.id}
                     item={item}
@@ -57,40 +102,10 @@ const DisplayTodos = (props) => {
                     updateTodo={props.updateTodo}
                     completeTodo={props.completeTodo}
                   />
-                )
-              );
-            })
-          : null}
-        {/* for completed items */}
-        {props.todos.length > 0 && sort === "completed"
-          ? props.todos.map((item) => {
-              return (
-                item.completed === true && (
-                  <TodoItem
-                    key={item.id}
-                    item={item}
-                    removeTodo={props.removeTodo}
-                    updateTodo={props.updateTodo}
-                    completeTodo={props.completeTodo}
-                  />
-                )
-              );
-            })
-          : null}
-        {/* for all items */}
-        {props.todos.length > 0 && sort === "all"
-          ? props.todos.map((item) => {
-              return (
-                <TodoItem
-                  key={item.id}
-                  item={item}
-                  removeTodo={props.removeTodo}
-                  updateTodo={props.updateTodo}
-                  completeTodo={props.completeTodo}
-                />
-              );
-            })
-          : null}
+                );
+              })
+            : null}
+        </AnimatePresence>
       </ul>
     </div>
   );
